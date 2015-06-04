@@ -1,4 +1,4 @@
-
+// fff
 
     path = require('path');//path 路径
 var koa = require('koa');

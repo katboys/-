@@ -1,0 +1,24 @@
+
+{
+	"name": "qitiaowang",
+	"description": "qitiaowang is one of chinese's university student service provider make by wuyuzhou",
+	"version": "0.1.0",
+	"dependencies": {
+		""
+	},
+	"engines": {
+     "node": "*"
+	},
+    "keywords": [
+    "koa",
+    "school",
+    "university student",
+    "service",
+    ],
+    "maintainers": [
+    {   "name": "wuyuzhou",
+        "email": "2297235604@qq.com",
+        "phone": "18291426175",
+    }]
+    
+}

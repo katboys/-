@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+  <html lang="en">
+    
+    <head>
+      
+      <title>校园活动</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--控制编码，ie8，和页面初始化-->
+      
+      <script src="../../js/jquery-2.1.1.min.js"></script>
+      <script src="../../js/bootstrap.min.js"></script>
+       <script charset="utf-8" src="../../KindEditor/kindeditor-min.js">
+       </script>
+
+      
+      <link rel="stylesheet" href="../../css/bootstrap.min.css">
+      <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+      <link rel="stylesheet" href="../../css/个人中心.css">
+     
+
+  
+ 
+</head>
+<body>
+
+
+   <nav class="navbar navbar-default ">
+         <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/home">首页</a>
+            </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+           <div >
+              <ul class="nav navbar-nav">
+              <li><a href="/home/action">校园活动</a></li>
+              <li><a href="/home/swrap">校园易物</a></li>
+             
+       
+         <li><a href="/home/user" class="navbar-right">个人中心</a></li>
+         
+     <li><a href="/home/help" class="nav-font">帮助</a></li>
+      </ul>
+     
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+ <div class="container-fluid">
+<div class="row-fluid">
+  <div class="span1"></div>
+  <div class="span10">
+<h1>word内容</h1>
+<div class="form">
+<form action="/blog/update" method="post">
+    <p><input type="text" placeholder="标题" class="form-control" name="title" value="{{post.title}}"></p>
+    <p><textarea placeholder="内容" class="editor" style="width: 100%; height: 300px;" name="content">{{post.content}}</textarea></p>
+    <p>
+
+        {% for vo in G.tag %}
+        <label class="checkbox-inline">
+            <input type="checkbox" class="checkbox" name="tags[]" value="{{vo.key}}" {% if F.in_array(vo.key,post.tags) %} checked{% endif %}> {{vo.name}}
+        </label>
+        {% endfor %}
+    </p>
+    <p><input type="submit" class="btn btn-primary" value="提交"></p>
+    <p><input type="hidden" name="id" value="{{post.id}}"> </p>
+</form>
+</div>
+<script>
+    /*$(function(){
+        var tags = "{{post.tags}}";
+        $('.checkbox').each(function(){
+            var vo = $(this).val();
+            if(tags.indexOf(vo)>=0)$(this).attr('checked',true);
+        })
+    })*/
+    KindEditor.ready(function(K) {
+        K.create('.editor', {
+                    themeType : 'default',
+                    width : '100%',
+                    items : [
+                        'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic',
+    'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright',
+    'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+                    ]
+                }
+        );
+    });
+</script>
+</div>
+<div class="span1"></div>
+</div>
+</div>
+
+  <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+               
+               <div class="copy">&copy; 2015 · 起跳团队· 版权所有&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about" id="jiaru">加入我们</a></div>
+
+              </div>
+            </div>
+          </div>
+        </footer>
+
+     
+    
+</body>

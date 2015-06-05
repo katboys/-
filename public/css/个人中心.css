@@ -214,9 +214,10 @@ img {
 
 
 footer a {
- color: #00FF00;
+    color: #00FF00;
   }
- footer a:hover, footer a:focus{
+
+footer a:hover, footer a:focus{
     color: #FFFF00;
  }
 
@@ -228,9 +229,6 @@ footer {
      margin-top: 35px;
      height: 30px;
      }
-
-
-
 
 footer .copy {
     font-size: 10px; text-align: center; color: white;

@@ -17,12 +17,13 @@
       <link rel="stylesheet" href="../../css/bootstrap.min.css">
       <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
-      <link rel="stylesheet" href="../../css/个人中心.css">
+      <link rel="stylesheet" href="../../css/完善信息.css">
   
  
 </head>
+
 <body>
-   <nav class="navbar navbar-default ">
+    <nav class="navbar navbar-default ">
          <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -41,26 +42,31 @@
      
       </ul>
      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+       </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav>
 
 
 
-   <h1>图片上传</h1>
-  <p>希望大家把图片切成480*480 72dpi </p>
-  <form action="/uploadImg" method="post" enctype="multipart/form-data">
+   
+<form method="post" action="/goods/inform" enctype="multipart/form-data">
+    <div class="col-md-1" ></div>
+<div class="col-md-9 panel relative" style="display: block;">
+    <table>
+      <h1>图片上传</h1>
+     <p>希望大家把图片切成480*480 72dpi </p>
+ 
 
     <input type="file" name="file" multiple>
-    <input type="submit" onClick = "uploadFile()" value="上传">
-  </form>
+    
+ 
 
-<form method="post" action="/goods/inform" enctype="multipart/form-data">
-    <table>
-      
         
         <tr>
-            <td>联系方式：</td><td><input type="text" name="address" id="address" /></td>
+            <td>qq：</td><td><input type="text" name="address" id="address" /></td>
+        </tr>
+         <tr>
+            <td>微信：</td><td><input type="text" name="address" id="address" /></td>
         </tr>
         <tr>
             <td>标题：</td><td><input type="text" name="title" id="title" /></td>
@@ -73,24 +79,36 @@
         <tr>
             <td>价格：</td><td><input type="text" name="price" id="price" /></td>
         </tr>
+
         <tr>
             <td>标签：</td><td><input type="text" name="tags" id="tags" /></td>
         </tr>
+        
         <tr>
-            <td colspan="2"><input type="submit" value="提交" /></td>
+          <td>特殊要求:</td><td> <select >
+                      <option value="0" daisabled seleacted="selected">请选择:</option>
+                      <option value="2015">只卖学妹</option>
+                      <option value="2014">只卖学弟</option>
+                      <option value="2013">不要钱白送</option>
+                      
+                      
+                     </select></td></tr>
+        <tr>
+            <td colspan="2"><input type="submit" onClick = "uploadFile()" value="上传"></td>
         </tr>
     </table>
+  </div>
 </form>
 
 
   <footer>
           <div class="container" >
             <div class="row">
-              <div class="col-md-12">
-               
+              
+               <div class="xiaocopy"></div>
                <div class="copy">&copy; 2015 · 起跳团队· 版权所有&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about" id="jiaru">加入我们</a></div>
 
-              </div>
+             
             </div>
           </div>
         </footer>

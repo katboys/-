@@ -55,6 +55,8 @@ module.exports.init = function(app,route){
 
   //img上传页面
    app.use(route.get('/home/user/img', DisplayController.img));
+   //inf上传页面
+   app.use(route.get('/home/user/inf', DisplayController.inf));
 
 
 

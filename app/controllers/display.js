@@ -33,7 +33,9 @@ word: function *() {
 img: function *() {
   this.body = yield render('上传图片');
 },
-
+inf: function *() {
+  this.body = yield render('完善信息');
+},
 
 
 

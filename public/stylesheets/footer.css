@@ -1,0 +1,26 @@
+footer a {
+ color: #00FF00;
+  }
+
+footer a:hover, footer a:focus{
+  color: #FFFF00;
+  text-decoration:none;
+ }
+
+footer { 
+  background-color: #242830; 
+  opacity: 0.85;
+  padding: 30px 0; 
+  margin-top: 115px;
+  height: 20px;
+}
+
+footer .copy {
+  font-size: 10px; 
+  text-align: center; 
+  color: white;
+  
+}
+
+.down {
+}

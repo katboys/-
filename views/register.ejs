@@ -1,0 +1,134 @@
+<html lang="zh-CN">
+  <head>
+  
+      
+      <title>注册</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--控制编码，ie8，和页面初始化-->
+      
+      <script src="javascripts/jquery-2.1.1.min.js"></script>
+      <script src="javascripts/bootstrap.min.js"></script>
+      <script src="javascripts/denglu.js"></script>
+      
+      <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+      <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
+      <link rel="stylesheet" href="stylesheets/注册.css">
+     <script type="text/javascript">
+      function check(){
+        var username = $('#account')[0].value;
+        var password = $('#password')[0].value;
+        var rpassword = $('#rpassword')[0].value;
+        var wechat = $('#wechatip')
+        if(username.length>20||username.length<6){
+          alert('用户名长度应当在6到20个字符之间')
+        }
+        if(password!=rpassword){
+          alert('两次密码不相同，请重新输入!');
+          return false;
+        }
+        if(password.length>20||password.length<6){
+          alert('密码应当在6到20个字符之间！');
+          return false;
+        }
+        if(wechat.length>=20||wechat.length<1){
+          alert('微信号长度在3到12个字符之间');
+          return false;
+        }
+        return true;
+      };
+     </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default ">
+         <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <a class="navbar-brand" href="/home">
+                  <img alt="Brand" src="fonts/起跳logo.png">
+              </a>
+              <a class="navbar-brand" href="/home">随便逛逛</a>
+            </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+           <div >
+              <ul class="nav navbar-nav">
+              
+              <li><a href="/help">帮助</a></li>
+              </ul>
+      
+      
+     
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<%=include info%>
+
+<div class="flash_user">
+  
+
+<param name="movie" value="http://e.jiaju99.com/efiles/banner.swf">
+
+<param name="quality" value="high"><param name="wmode" value="transparent">
+
+<embed src="images/1.swf" quality="high"
+
+pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1280" height="840"></embed>
+
+</div>
+
+ 
+      <div class="container">
+        
+        <div class="loginBox_register row-fluid  ">
+          <form action="/register" method="POST"  class="col-md-12" onsubmit="return check()">
+
+            <h3 class="zhuce_user">用户注册</h3>
+            <p>用户名:<input type="text" name="account" id="account" placeholder="账号名" class="form-control form-control_register"></p>
+            
+            <p>新密码：<input type="password" name="password" placeholder="请输入密码" class="form-control form-control_register" id="password"></p>
+            <p>重复新密码：<input type="password" name="checkpassword" placeholder="请重复密码"class="form-control form-control_register" id="rpassword">
+            </p>
+           
+            <p>微信号：<input type="text" name="wechatip" id="wechatip" placeholder="请输入微信号"class="form-control form-control_register">
+            </p>
+            <p>请选择性别：<label class="radio-inline">
+             <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 男
+                         <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 女
+                          </label>
+            </p>
+            
+            
+            
+      
+      
+      
+            <div class="row-fluid">
+              <div class="col-md-5"><a href="/signin">已有账号？</a></div>
+                <div class="col-md-5 col-xs-4">
+                  <input type="submit" value="注册" class="btn btn-primary btn-block">
+                </div>
+            </div>
+          
+         </form>
+        </div><!-- /loginBox -->
+    </div> 
+
+  <footer class="footer">
+          <div class="container">
+            <div class="row">
+
+               <div class="demo">
+            <div class="demo-bg"></div><!-- 透明背景 -->
+            <div class="copy">&copy; 2015 · 起跳团队· 版权所有&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about" id="jiaru">加入我们</a></div>
+            <!-- 不透明文字 -->
+              </div>
+            </div>
+          </div>
+     </footer>
+
+  </body>

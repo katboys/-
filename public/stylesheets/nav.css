@@ -1,0 +1,138 @@
+.form-control{
+  max-width: 150px;
+}
+.formwidth{
+  max-width: 530px;
+}
+.formbigwidth{
+  max-width: 530px;
+}
+.formsmall{
+  max-width: 110px;
+}
+.headimg{
+  width: 40px;height: 40px;
+}
+.bigheadimg{
+  width: 100px;height: 100px;
+}
+
+.avatar {
+  position: relative;
+  -webkit-border-radius: 200px;
+  border-radius: 200px;
+  overflow: hidden;
+  max-width: 75px;
+  margin-top: 20px;
+}
+.u-name{
+  margin-top: 10px;
+  padding: 5px 20px;
+  margin-left: 50px;
+}
+.info-rcol{
+  margin-top: 15px;
+}
+.big-liste .price > span{
+  cursor: pointer;
+}
+.price > span {
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color:#0099FF;
+  color: white;
+  padding: 3px 10px;
+  margin-left: -55px;
+}
+.rmb {
+  padding-left: 1px;
+  font-size: 11px;
+  position: relative;
+  bottom: 2px;
+ 
+}
+
+.price {
+  
+  text-align: center;
+  padding: 20px 0;
+  
+}
+.big-liste .prod-user{
+  text-align: left;
+  display: inline-block;
+  min-height: 52px;
+  margin: auto;
+  font-size: 12px;
+  line-height: 1.3em;
+  color: #777;
+}
+.col-md-12 img {
+  max-width: 100%;
+  height: auto;
+}
+.col-sm-12{
+  margin-top: 10px;
+}
+.prod-img img{
+  max-width: 70%;
+  height: auto;
+}
+.rmb {
+  padding-left: 1px;
+  font-size: 11px;
+  position: relative;
+  bottom: 2px;
+ 
+}
+.price a{
+  color: white;
+}
+.price1 {
+   text-align: center;
+  padding: 20px 0;
+  text-align: center;
+  margin-left: -30px;
+ 
+}
+.price1 > span {
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 3px 10px;
+}
+
+
+.modal-dialog img{
+  max-width: 100%;
+  height: auto;
+}
+.relative{
+  position: relative;
+}
+.label_upload{
+  font-size: 16px;
+  margin-left: -30px;
+}
+.item{
+  padding: 8px 0;
+  margin-left: 60px;
+}
+.label_upload{
+  color: black;
+}
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}
+.gray{
+  color: #CCCCCC;
+}
+
+
+.container-fluid{
+    margin-left: 100px;
+}

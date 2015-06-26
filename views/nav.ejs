@@ -1,0 +1,182 @@
+<link rel="stylesheet" href="stylesheets/nav.css"> 
+
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home">
+        <img alt="Brand" src="fonts/起跳logo.png">
+      </a>
+      <a class="navbar-brand" href="/home">首页</a>
+    </div>
+
+    <div >
+      <ul class="nav navbar-nav">
+        <li><a href="/activity">校园活动</a></li>
+        <li><a href="/swap">校园易物</a></li>
+        <li><a href="/user" class="nav-font">个人中心</a>
+        </li>
+        <li><a href="/help" class="nav-font needhelp">帮助</a></li>
+      </ul>
+      <% if(user){ %>
+      <ul class="nav navbar-nav navbar-right">
+      <% if (title === '校园易物') { %>
+      <li style="margin-top:10px;">
+        <form class="form-inline" method="post" action="/dealSearch">
+          <input type="text" class="form-control" name="query" id="search" placeholder="想要找什么呢">
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+      </li>
+      <%}%>
+        <li><a href="#" class="needpointer" data-toggle="modal" data-target="#myModal">卖东西</a></li>
+
+        <li><a href="/signout">登出</a></li>
+      </ul>
+      <% } %>
+    </div>
+
+  </div>
+</nav>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> 物品上传</h4>
+      </div>
+                <form method="post" action="/uploadimg" enctype="multipart/form-data" onsubmit="return check()">
+
+      <div class="modal-body">
+         
+                  
+              
+    
+               <div class="panel relative" style="display: block;">
+    
+                 <input  type="file" name="file" multiple id="i_file">
+                <div class="gray"><h6>仅支持JPG、、PNG、JPEG格式,文件小于2M
+                  </h6>
+                  <h6>第一张将作为主图片</h6>
+                </div>
+
+                 <div >
+                    <img class="bigheadimg"  src="images/4副本.jpg">
+                    <img class="bigheadimg"  src="images/4副本.jpg">
+                    <img class="bigheadimg"  src="images/4副本.jpg">
+                    <img class="bigheadimg"  src="images/4副本.jpg">
+                  </div>
+
+                 
+              
+                 <div class="item">
+                    <span class="label_upload">
+                       标题：
+                    </span>
+                    <div >
+                    <input type="text" name="title" id="goods_title" class="form-control" placeholder="例：考研神书">
+                    </div>
+                  </div>
+        
+                    <div class="item">
+                     <span class="label_upload">
+                      <span class="glyphicon glyphicon-exclamation-sign red" aria-hidden="true"></span>
+                       价格：
+                    </span>
+
+                  <div class=" input-group">
+                    
+                   <span class="input-group-addon ">￥</span>
+                   <input type="text" name="price" id="goods_price" class="form-control formsmall" placeholder="例：66" >
+                   
+                  </div>
+
+                  </div>
+
+                  
+
+                 
+
+                  <div class="item">
+                    <span class="label_upload">
+                       简介：
+                    </span>
+                    <div >
+                      
+                   <input type="text" name="desc" id="goods_desc" class="form-control formbigwidth" placeholder="例：西大大三计算机教材，9成新，无缺页漏页，内附详细笔记，童叟无欺">
+                    </div>
+                  </div>
+             </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-primary">保存信息</button>
+      </div>
+          </form>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    function check() {
+    //check whether browser fully supports all File API
+    if (window.File && window.FileReader && window.FileList && window.Blob)
+    {
+        //get the file size and file type from file input field
+        var fsize = $('#i_file')[0].files[0].size;
+        var ftype = $('#i_file')[0].files[0].type;
+        var fname = $('#i_file')[0].files[0].name;
+        
+       switch(ftype)
+        {
+            case 'image/png':
+            case 'image/gif':
+            case 'image/jpeg':
+            case 'image/pjpeg':
+                break;
+            default:
+                alert('不支持的文件格式');
+                return false;
+        }
+
+        if(fsize>2097153){
+          alert('文件大小超过2m!请重新上传一个小一点的图像!');
+          return false;
+        }
+        if(fname.length>128){
+          alert('您的文件名过长，请重命名后上传!');
+          return false;
+        }
+
+        var title = $('#goods_title')[0].value;
+      var price = $('#goods_price')[0].value;
+      var desc = $('#goods_desc')[0].value;
+      if(title.length>12||title.length<=1){
+        alert('物品名称长度应当在2到12个字符之间');
+        return false;
+      }
+      if(isNaN(price)){
+        alert("请填写一个数字");
+        return false;
+      }
+      if(price.length<=0){
+        alert("价格不能为空")
+        return false;
+      }
+      if(desc.length>140){
+        alert('物品描述应当在140个字符以内');
+        return false;
+      }
+      return true;
+
+        return true;
+
+    }else{
+        alert("请升级您的浏览器，因为您的浏览器缺乏我们需要的某些特性！");
+        return false;
+    }
+
+};
+     </script>

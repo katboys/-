@@ -1,93 +1,83 @@
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
+var routes = require('./routes/index');
+var settings = require('./settings');
+var flash = require('connect-flash');
+var multer = require('multer');
 
-    path = require('path');//path 路径
-var koa = require('koa');
-    app = koa();
-    render = require('./lib/render');
-    logger = require('koa-logger');
-    route = require('koa-route');//http 路由
-    bodyParser = require('koa-bodyparser'),//
-    
-    serve = require('koa-static');
-    staticCache = require('koa-static-cache'),
-    fs = require('fs'),
-    formidable = require('formidable');
-    
-    co = require('co'),
-    
+var app = express();
+app.use(multer({
+  dest: './public/images',
+  rename:function(fieldname,filename){
+    return new Date()+Math.random().toString();
+  }
+}));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(flash());
 
-    global._ = require('lodash');
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-    mongoose = require('mongoose');
-    session = require('koa-session-store');//缓存存储
-    mongooseStore = require('koa-session-mongoose');
-
-var routes = require('./config/routes');
-
-
-mongoose.connect('mongodb://127.0.0.1:27017/test',function(err,res){
-        if(err){console.log('Connection Error: ' + error.message);
-                return;
-          }
-          console.log('Connected to mongodb');
-
-        });
-
- var db = mongoose.connect;
-app.keys = ['koa','blog'];
 
 app.use(session({
-    store: mongooseStore.create(),
-    collection: 'koaSessions',
-    connection: db,
-    expires: 30 * 60 * 1000,//到期时间30分钟60秒1000毫秒
-    model: 'KoaSession'
+  secret:settings.cookieSecret,
+  key:settings.db,
+  cookie:{maxAge: 1000*60*60*24*30},
+  resave:true,
+  saveUninitialized:true,
+  store:new MongoStore({
+    db:settings.db,
+    host:settings.host,
+    port:settings.port
+  })
 }));
-// middleware
-app.use(bodyParser());
 
-app.use(logger());
+app.use('/', routes);
 
-// route middleware
-routes.init(app,route);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
+// error handlers
 
-var static_root = path.join(__dirname, "/public");//静态文件
-app.use(staticCache(static_root, {
-       maxAge: 860000000,
-       gzip:true
-       }));
-/**
- * Show creation form.
- */
-app.use(serve(path.join(__dirname, "/public/")));
-
-app.use(function * (next) {
-        //非favicon 直接跳过
-        if ('/favicon.ico' != this.path) return yield next;
-        //头部定义防止 404
-        if ('GET' !== this.method && 'HEAD' !== this.method) {
-            this.status = 'OPTIONS' == this.method ? 200 : 405;
-            this.set('Allow', 'GET, HEAD, OPTIONS');
-            return;
-        }
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
- app.use(route.get('/404',function * pageNotFound(next) {
-        this.body = yield this.render('404');
-    }));
-
-
-//监听3000端口
-app.listen(3000);
-console.log('listening on port 3000');
-
-//错误处理route.get('/404',
-app.on('error', function(err) {
-        console.log('server error', err);
-    });
-
-
-
+module.exports = app;

@@ -1,0 +1,122 @@
+
+body {
+    background: url("../images/xiaoyuanbg.jpg") repeat scroll 0 0 ; 
+    overflow-x: scroll;
+    z-index: -1;
+}
+
+.row {
+    position:static;
+    margin-left: 10px;
+    margin-right: 0px;
+    
+}
+.ipad-news{
+    margin-left:-25px;
+    margin-right: 0px;
+}
+p {
+    cursor: default;
+    font: 500 15px/1.8 "Helvetica Neue", Ubuntu, "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+a:hover:not(.btn), a:active:not(.btn) {
+    text-decoration: none;
+    transform: translateY(-6px);
+}
+.padding-huge {
+    padding: 20px;
+}
+
+.relative {
+    position: relative;
+}
+
+
+.nav a {
+    transition: all 500ms ease 0s;
+}
+
+.navbar .nav > li > a{
+    padding: 15px 20px;
+}
+
+.nav-font{
+    font-size: 12px;
+    }
+
+.needhelp{
+  cursor: help;
+}
+
+.navbar a:hover:not(.btn), a:active:not(.btn) {
+   
+    transition: all 400ms ease 0s;
+    text-decoration: none;
+    transform: translateY(-6px);
+}
+header {
+    margin-top: 40px;
+}
+
+.panel {
+ 
+    border-radius: 8px 8px 8px 8px;
+    display: block;
+    margin-bottom: 35px;
+    padding: 0;
+
+}
+
+
+.container-fluid{
+    margin-left: 30px;
+}
+
+
+.note {
+  padding: 18px 20px;
+  background: #eee;  /*灰色*/
+  text-decoration: none;
+  background: #ffc; /*黄色*/
+  display: block;
+  padding: 20px;
+  width: 230px;
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  font-size: 18px;
+}
+.ribbon-apple {
+    max-width: 70px;
+    position: absolute;
+    right: 15px;
+    top: -5px;
+}
+
+
+footer a {
+ color: #00FF00;
+  }
+
+footer a:hover, footer a:focus{
+    color: #FFFF00;
+ }
+
+footer { 
+    background-color: #242830; 
+    opacity: 0.85;
+    color: #8c9398;
+     padding: 30px 0; 
+     text-align: center; 
+     margin-top: 0px;
+     height: 30px;
+     }
+footer .copy {
+    font-size: 10px; text-align: center; color: white;
+    
+}
+
+

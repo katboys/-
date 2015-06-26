@@ -1,0 +1,21 @@
+body {
+    overflow-x: hidden;
+}
+
+.big-list{
+  clear: both;
+  padding-bottom: 55px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  vertical-align: middle;
+}
+
+.size {
+    width: 35px;
+    height: 35px;
+}

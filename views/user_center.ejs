@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+  <html lang="en">
+    
+    <head>
+      
+      <title>个人中心</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="javascripts/jquery-2.1.1.min.js"></script>
+      <script src="javascripts/bootstrap.min.js"></script>
+      
+      <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+      <link rel="stylesheet" href="stylesheets/个人中心.css">
+  
+    <script type="text/javascript">
+    function check() {
+    //check whether browser fully supports all File API
+    if (window.File && window.FileReader && window.FileList && window.Blob)
+    {
+        //get the file size and file type from file input field
+        var fsize = $('#i_file')[0].files[0].size;
+        var ftype = $('#i_file')[0].files[0].type;
+        var fname = $('#i_file')[0].files[0].name;
+        
+       switch(ftype)
+        {
+            case 'image/png':
+            case 'image/gif':
+            case 'image/jpeg':
+            case 'image/pjpeg':
+                break;
+            default:
+                alert('不支持的文件格式');
+                return false;
+        }
+
+        if(fsize>2097153){
+          alert('文件大小超过2m!请重新上传一个小一点的图像!');
+          return false;
+        }
+        if(fname.length>128){
+          alert('您的文件名过长，请重命名后上传!');
+          return false;
+        }
+
+        return true;
+
+    }else{
+        alert("请升级您的浏览器，因为您的浏览器缺乏我们需要的某些特性！");
+        return false;
+    }
+
+};
+
+    function checkUserEditInfo(){
+      var nickname = $('#nickname')[0].value;
+      var wechat = $('#wechat')[0].value;
+      if(nickname.length>=12||nickname.length<3){
+        alert('昵称长度应在3到12个字符之间');
+        return false;
+      }
+      if(wechat.length>=12||wechat.length<3){
+        alert('微信号长度在3到12个字符之间');
+        return false;
+      }
+      return true;
+    };
+
+
+    function checkGoodsEditInfo(){
+      var title = $('#goods_title')[0].value;
+      var price = $('#goods_price')[0].value;
+      var desc = $('#goods_desc')[0].value;
+      if(title.length>12||title.length<=1){
+        alert('物品名称长度应当在2到12个字符之间');
+        return false;
+      }
+      if(isNaN(price)){
+        alert("请填写一个数字");
+        return false;
+      }
+      if(price.length<=0){
+        alert("价格不能为空")
+        return false;
+      }
+      if(desc.length>140){
+        alert('物品描述应当在140个字符以内');
+        return false;
+      }
+      return true;
+    };
+     </script>
+    </head>
+
+    <body>
+      <%=include nav %>
+      <%=include info %>
+      <div style="margin-top:25px;">
+        
+          <div class="col-md-12" style="display: block; ">
+            <img src="images/xiaoyuanbg副本 3.jpg" class="ipad-news" style=" margin-top:-20px;" >
+          </div>
+          <div  class="col-md-12 position: relative;">
+          </div>
+      </div><!--图片完成-->
+
+       <div class="container-fluid">
+           <div class="col-md-3 mainmulu">
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" >
+
+              <div class="panel panel-default" >
+
+                 <div class="panel-heading" role="tab" id="headingOne">
+                   <h4 class="panel-title">
+                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      更多信息
+                     </a>
+                  </h4>
+                </div>
+
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                 <div class="list-group">
+                   
+                   <div>
+                    <ul><a class="needpointer" data-toggle="modal" data-target="#myEditInfoModal"><h5>修改信息</h5></a>
+                    </ul>
+                  </div>
+
+                   <div>
+                     <ul>
+                       <a class="needpointer" data-toggle="modal" data-target="#myAvatarModal"><h5>上传头像</h5></a>
+                     </ul>
+                    </div>
+
+                 </div>
+             </div>
+
+          </div>
+
+             
+
+            
+           </div>
+       </div>
+
+
+       <div class="col-md-9 maininfo">
+              <div role="tabpanel">
+
+  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">我的上传</a></li>
+    
+                  </ul>
+
+  <!-- Tab panes -->
+              <div class="tab-content">
+
+
+                
+                <div role="tabpanel" class="tab-pane active" id="mypost"> 
+                  <div class="panel relative" id="postimg" >
+                    <h3>我的上传</h3>
+                    <% goodsArray.forEach(function(goods,index){ %>
+                    <% if (goods.flag===0) { %>
+                    <div class="span9"> 
+                       <div class="col-sm-12">
+                       <div  class="prod col-xs-6 product col-sm-2" id="382425" data-product="382425">
+                        <a class="prod-img"  href="#" target=""><img src="images/<%=goods.url%>">
+                        </a>
+                        </div>
+                       <div class="price login-box col-sm-1" >
+                           <span><%=goods.price %><span class="glyphicon glyphicon-yen"></span></span>
+                       </div>
+                        
+
+                       <div class=" price1 col-sm-3" >
+                           <span><%=goods.time.minute %></span>
+                       </div>
+     
+ 
+                       <div class="like col-sm-3">
+                          <span class="glyphicon glyphicon-heart red bt-like login-box price " data-toggle="tooltip" data-placement="buttom"  >
+                          </span>
+                          
+                          <span>44</span>
+                       </div>
+
+                        <div class=" col-sm-3 price login-box datestyle" >
+                           
+                           <span><a class="needpointer" data-toggle="modal" data-target="#myModal<%=index%>">查看详情</a></span>
+                       </div>
+                     
+                     </div>
+                     <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+
+
+                     <div class="modal fade" id="myModal<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">详情</h4>
+                          </div>
+                          <div class="modal-body col-md-12">
+                            <div class="col-md-6">
+
+                             <h4><%=goods.name%>
+                              
+                              <img src="images/<%=goods.url%>">
+                            </div>
+
+                            <div class="col-md-6">
+                              <h5 >
+                              <em class="user_time" ><%=goods.time.minute%></em></h5><br>
+                              <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+                              <div>
+                                <h4>简介</h4>
+                                <p><%=goods.description%></p>
+                              </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="/upDown/0/<%=goods.url%>" type="button" class="btn btn-default" >下架</a>
+                            
+                            <a type="button" class="btn btn-default" data-toggle="modal" data-target="#myEditGoodsModal" data-dismiss="modal">修改信息</a>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+
+
+
+                    <div class="modal fade" id="myEditGoodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> 物品上传</h4>
+      </div>
+            <div class="modal-body">
+
+                <form action="/editGoods/<%=goods.url%>" method="POST" onsubmit="return checkGoodsEditInfo()">
+    
+                 <div class="item">
+                    <span class="label_upload">
+                       标题：
+                    </span>
+                    <div >
+                    <input type="text" class="form-control" value="<%=goods.name%>" name="title" id="goods_title" >
+                    </div>
+                  </div>
+        
+                    <div class="item">
+                     <span class="label_upload">
+                      <span class="glyphicon glyphicon-exclamation-sign red" aria-hidden="true"></span>
+                       价格：
+                    </span>
+
+                  <div class=" input-group">
+                    
+                   <span class="input-group-addon ">￥</span>
+                   <input type="text" name="price" id="goods_price" class="form-control formsmall" value="<%=goods.price%>">
+                   
+                  </div>
+
+                  </div>
+
+                  
+
+                 
+
+                  <div class="item">
+                    <span class="label_upload">
+                       简介：
+                    </span>
+                    <div >
+                      
+                   <input type="text" name="desc" id="goods_desc" class="form-control formbigwidth" value="<%=goods.description%>">
+                    </div>
+                  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-primary">保存信息</button>
+      </div>
+          </form>
+
+    </div>
+  </div>
+</div>
+                    
+
+                     <% } %>
+                 <% }) %>
+
+             
+
+             
+           </div>
+           <h3>已下架</h3>
+                    <% goodsArray.forEach(function(goods,index){ %>
+                    <% if (goods.flag===1) { %>
+                   <div class="span9"> 
+                       <div class="col-sm-12">
+                       <div  class="prod col-xs-6 product col-sm-2" id="382425" data-product="382425">
+                        <a class="prod-img"  href="#" target=""><img src="images/<%= goods.url %>">
+                        </a>
+                        </div>
+                       <div class="price login-box col-sm-1" >
+                           <span><%=goods.price%><span class="glyphicon glyphicon-yen"></span></span>
+                       </div>
+                        
+
+                       <div class=" price1 col-sm-3" >
+                           <span><%=goods.time.minute%></span>
+                       </div>
+     
+     
+ 
+                       <div class="like col-sm-3">
+                          <span class="glyphicon glyphicon-heart red bt-like login-box price " data-toggle="tooltip" data-placement="buttom"  >
+                          </span>
+                          
+                          <span>44</span>
+                       </div>
+
+                        <div class=" col-sm-3 price login-box datestyle" >
+                            <span><a class="needpointer" data-toggle="modal" data-target="#myModal<%=index%>">查看详情</a></span>
+                       </div>
+                     
+                     </div>
+                    
+
+               
+                     <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+                     <div class="modal fade" id="myModal<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">详情</h4>
+                        </div>
+                        <div class="modal-body col-md-12">
+                          <div class="col-md-6">
+
+                           <h4><%=goods.name%>
+                            </h4>
+                            <img src="images/<%=goods.url%>">
+                          </div>
+
+                          <div class="col-md-6">
+                            <h5 >
+                            <em class="user_time" ><%=goods.time.minute%></em></h5><br>
+                            <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+
+                            <div>
+                              <h4>简介</h4>
+                              <p><%=goods.description%></p>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="deleteGoods/<%=goods.url%>" type="button" class="btn btn-default" >删除</a>
+                          
+                          <a href="/upDown/1/<%=goods.url%>" type="button" class="btn btn-primary">重新上架</a>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+                   <% } %>
+                 <% }) %>
+
+             
+           </div>
+          
+                   </div>
+                </div>
+            
+               
+              
+
+              
+
+
+             
+           </div>
+
+
+         
+     </div>
+                   </div>
+                </div>
+   
+              </div>
+
+            </div>
+          </div>
+
+     </div>
+
+    
+
+
+<!--修改信息模态框-->
+<div class="modal fade" id="myEditInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+      </div>
+      <div class="modal-body">
+          <form action="/editUser" method="POST" onsubmit="return checkUserEditInfo()">
+                  
+                  <div class="item">
+                    <span class="label">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                       昵称：
+                    </span>
+                    <div >
+                      <input type="text" class="form-control form-control_same"  value="<%=user.nickname%>" name="nickname" id="nickname">
+                    </div>
+                  </div>
+
+                   
+
+
+                  
+
+                  <div class="item">
+                    <span class="label">
+                      <span class="glyphicon  glyphicon-phone" aria-hidden="true"></span>
+                       微信号：
+                    </span>
+                    <div>
+                      <input type="text" class="form-control form-control_same"  value="<%=user.wechat%>" name="wechat" id="wechat">
+                    </div>
+                     
+                  </div>
+
+                 
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <input  type="submit" class="btn btn-primary" value="保存修改">
+      </div>
+            </form>
+
+    </div>
+  </div>
+</div>
+
+<!--头像上传的modal-->
+<div class="modal fade" id="myAvatarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">头像图片</h4>
+      </div>
+      <div class="modal-body userhome_img">
+         
+            <form action="/uploadAvatar" method="post" enctype="multipart/form-data" onsubmit="return check()">
+                <input type="file" name="file" value="" id="i_file"/>
+                <div class="gray">
+                    <h6>仅支持JPG、GIF、PNG、JPEG格式,文件小于2M</h6>
+                </div>
+              
+                <div >
+                    <img class="bigheadimg"  src="images/4副本.jpg">
+                </div>
+                <div>
+                    <h4>默认头像</h4>
+                </div>
+                <div>
+                    <ul>
+                     <img  class="headimg" src="images/排版 -.jpg">
+                     <img class="headimg" src="images/排版.jpg">
+                    </ul>
+                   
+                </div>
+              
+                
+     
+
+    
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <input type="submit" class="btn btn-primary" value="保存图片"  />
+      </div>
+             </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+     
+          
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+               
+               <div class="copy">&copy; 2015 · 起跳团队· 版权所有&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about" id="jiaru">加入我们</a></div>
+
+              </div>
+            </div>
+            </div>
+        </footer>
+       
+  
+   
+</body>

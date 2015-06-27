@@ -1,7 +1,8 @@
 body {
     overflow-y:hidden;
     overflow-x:hidden;
-    opacity:0.88;
+    opacity:0.95;
+    background: url("../images/0011.jpg")repeat;
 }
 .form-control_register{
     width: 210px;

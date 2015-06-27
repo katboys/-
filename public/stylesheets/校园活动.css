@@ -1,7 +1,7 @@
 
 body {
     background: url("../images/xiaoyuanbg.jpg") repeat scroll 0 0 ; 
-    overflow-x: scroll;
+    overflow-x: hidden;
     z-index: -1;
 }
 

@@ -37,10 +37,13 @@
         <li><a href="/user" class="nav-font">个人中心</a>
         </li>
         <li><a href="/help" class="nav-font needhelp">帮助</a></li>
+        
+
       </ul>
       <% if(user){ %>
       <ul class="nav navbar-nav navbar-right">
       <% if (title === '校园易物') { %>
+
       <li style="margin-top:10px;">
         <form class="form-inline" method="post" action="/dealSearch">
           <input type="text" class="form-control" name="query" id="search" placeholder="想要找什么呢">
@@ -49,9 +52,18 @@
       </li>
       <%}%>
 
+
         <li><a href="/signout">登出</a></li>
-      </ul>
       <% } %>
+
+      <% if (!user) {%>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/signin">登入</a></li>
+        </ul>
+      <%}%>
+      
+      </ul>
+      
     </div>
 
   </div>

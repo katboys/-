@@ -8,6 +8,7 @@ function User(user) {
   this.mygoods = user.mygoods;
   this.wechat = user.wechat;
   this.sex = user.sex;
+  this.auth = user.auth;
  // this.email = user.email;
 };
 
@@ -23,7 +24,8 @@ User.prototype.save = function(callback) {
       password: this.password,
       mygoods: this.mygoods,
       wechat: this.wechat,
-      sex: this.sex
+      sex: this.sex,
+      auth:this.auth
    //   email: this.email
   };
   //打开数据库

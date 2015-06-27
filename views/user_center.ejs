@@ -61,8 +61,8 @@
         alert('昵称长度应在3到12个字符之间');
         return false;
       }
-      if(wechat.length>=12||wechat.length<3){
-        alert('微信号长度在3到12个字符之间');
+      if(wechat.length>32||wechat.length<3){
+        alert('微信号长度在3到20个字符之间');
         return false;
       }
       return true;

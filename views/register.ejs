@@ -33,8 +33,8 @@
           alert('密码应当在6到20个字符之间！');
           return false;
         }
-        if(wechat.length>=20||wechat.length<1){
-          alert('微信号长度在3到12个字符之间');
+        if(wechat.length>20||wechat.length<1){
+          alert('微信号长度在3到20个字符之间');
           return false;
         }
         return true;
